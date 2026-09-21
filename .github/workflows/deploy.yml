@@ -16,7 +16,9 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install pytest  # <--- Added this to ensure pytest is available
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run tests
         run: |
           python -m pytest
